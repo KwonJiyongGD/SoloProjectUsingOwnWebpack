@@ -55,12 +55,17 @@ h1 {
 h3 {
   color: #3d3d3d;
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
+  margin: 0;
 }
 
 p {
   color: #888888;
   margin-bottom: 10px;
+  margin: 0;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .buttons {
@@ -109,6 +114,8 @@ button:hover {
 .display-mode {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -126,7 +133,7 @@ h1 {
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 40px;
 }
 
 button {
@@ -151,7 +158,9 @@ button:hover {
 
 .create-profile-form h2 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin: 0;
+  padding: 0;
 }
 
 .create-profile-form form {
@@ -206,4 +215,17 @@ button:hover {
   width: 100%;
   height: 100%;
   /* object-fit: cover; */
+}
+
+.profile-image {
+  width: 350px;
+  height: 250px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

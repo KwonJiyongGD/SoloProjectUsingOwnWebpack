@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteProfile, updateProfile } from '../features/profileSlice';
+import { fetchRandomImage } from '../module/api.js';
 
 const Profile = ({ profile }) => {
   const [showInfo, setShowInfo] = useState(false);
@@ -8,7 +9,23 @@ const Profile = ({ profile }) => {
   const [editedName, setEditedName] = useState(profile.name);
   const [editedAge, setEditedAge] = useState(profile.age);
   const [editedInfo, setEditedInfo] = useState(profile.info);
+  const [imageUrl, setImageUrl] = useState('');
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!profile.imageUrl) {
+      // Fetch a random image URL when creating a new profile
+      fetchRandomImageUrl();
+    } else {
+      setImageUrl(profile.imageUrl);
+    }
+  }, []);
+
+  const fetchRandomImageUrl = async () => {
+    const randomImageUrl = await fetchRandomImage();
+    setImageUrl(randomImageUrl);
+  };
 
   const handleDelete = () => {
     dispatch(deleteProfile(profile.id));
@@ -24,6 +41,7 @@ const Profile = ({ profile }) => {
       name: editedName,
       age: editedAge,
       info: editedInfo,
+      imageUrl: imageUrl,
     };
     dispatch(updateProfile(editedProfile));
     setEditMode(false);
@@ -65,6 +83,13 @@ const Profile = ({ profile }) => {
           </div>
         ) : (
           <div className="display-mode">
+            <div className="profile-image">
+              {imageUrl ? (
+                <img src={imageUrl} alt="Profile" />
+              ) : (
+                <img src={`/images/image${profile.id}.jpg`} alt="Profile" />
+              )}
+            </div>
             <h3>{profile.name}</h3>
             <p>Age: {profile.age}</p>
             <button onClick={() => setShowInfo(!showInfo)}>
