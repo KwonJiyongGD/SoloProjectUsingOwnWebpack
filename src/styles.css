@@ -229,3 +229,34 @@ button:hover {
   height: 100%;
   object-fit: cover;
 }
+
+/**888888888888888888888/
+
+/* Navbar.css */
+.navbar {
+  background-color: #333;
+  padding: 10px;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-right: 10px;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.nav-link:hover {
+  background-color: #555;
+  border-radius: 3px;
+}
