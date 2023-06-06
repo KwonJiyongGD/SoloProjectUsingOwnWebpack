@@ -10,10 +10,21 @@ body {
   padding: 20px;
 }
 
-h1 {
+/* h1 {
   color: #3d3d3d;
   text-align: center;
   margin-bottom: 30px;
+} */
+
+h1 {
+  color: red;
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .create-profile-form {
@@ -118,10 +129,6 @@ button:hover {
   align-items: center;
 }
 
-h1 {
-  font-size: 32px;
-}
-
 .profile-container {
   background-color: #fafafa;
   opacity: 0.8;
@@ -193,17 +200,18 @@ button:hover {
 }
 
 /*                            888888888888888888888888888888888888888888                            */
-.random-image-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+/* .random-image-container {
+  position: absolute;
+  top: 300px;
+  right: 200px;
+  z-index: 1;
 }
 
 .random-image {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-}
+} */
 
 .image-square {
   width: 200px;

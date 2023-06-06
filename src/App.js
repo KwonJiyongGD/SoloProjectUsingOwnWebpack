@@ -9,7 +9,7 @@ import Navbar from './components/Navbar';
 function App() {
   return (
     <div className="app">
-      <h1 style={{ color: 'red' }}>Michael/Kwon's CRUD(dy) App</h1>
+      <h1>Michael/Kwon's CRUD(dy) App</h1>
       <Navbar />
       <CreateProfileForm />
       <ProfileContainer />
