@@ -8,6 +8,8 @@ const Profile = ({ profile }) => {
   const [editMode, setEditMode] = useState(false);
   const [editedName, setEditedName] = useState(profile.name);
   const [editedAge, setEditedAge] = useState(profile.age);
+  //setting gender
+  const [editedGender, setEditedGender] = useState(profile.gender);
   const [editedInfo, setEditedInfo] = useState(profile.info);
   const [imageUrl, setImageUrl] = useState('');
 
@@ -40,7 +42,9 @@ const Profile = ({ profile }) => {
       ...profile,
       name: editedName,
       age: editedAge,
+      gender: editedGender,
       info: editedInfo,
+
       imageUrl: imageUrl,
     };
     dispatch(updateProfile(editedProfile));
@@ -51,6 +55,7 @@ const Profile = ({ profile }) => {
     setEditMode(false);
     setEditedName(profile.name);
     setEditedAge(profile.age);
+    setEditedGender(profile.gender);
     setEditedInfo(profile.info);
   };
 
@@ -73,6 +78,13 @@ const Profile = ({ profile }) => {
               onChange={(e) => setEditedAge(e.target.value)}
               required
             />
+            <input
+              type="text"
+              placeholder="Gender"
+              value={editedGender}
+              onChange={(e) => setEditedGender(e.target.value)}
+              required
+            />
             <textarea
               placeholder="What is on your mind?"
               value={editedInfo}
@@ -92,6 +104,7 @@ const Profile = ({ profile }) => {
             </div>
             <h3>{profile.name}</h3>
             <p>Age: {profile.age}</p>
+            <p>Gender: {profile.gender}</p>
             <button onClick={() => setShowInfo(!showInfo)}>
               {showInfo ? 'Hide Info' : 'Show Info'}
             </button>

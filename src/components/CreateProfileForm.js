@@ -6,6 +6,10 @@ const CreateProfileForm = () => {
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [info, setInfo] = useState('');
+
+  //1
+  const [gender, setGender] = useState('');
+
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -15,17 +19,21 @@ const CreateProfileForm = () => {
       name,
       age,
       info,
+      //gender
+      gender,
       default: false,
     };
     dispatch(addProfile(newProfile));
     setName('');
     setAge('');
+    //resetting text input field
+    setGender('');
     setInfo('');
   };
 
   return (
     <div className="create-profile-form">
-      <h2>Create Profile</h2>
+      <h2>What Doggo Picture Are You Today?</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -39,6 +47,14 @@ const CreateProfileForm = () => {
           placeholder="Age"
           value={age}
           onChange={(e) => setAge(e.target.value)}
+          required
+        />
+        {/* setting gender */}
+        <input
+          type="text"
+          placeholder="Gender"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
           required
         />
         <textarea

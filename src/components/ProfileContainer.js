@@ -7,7 +7,7 @@ const ProfileContainer = () => {
 
   return (
     <div className="profile-container">
-      <h2>Profiles</h2>
+      {/* <h2>Profiles</h2> */}
       <ProfileList profiles={profiles} />
     </div>
   );
