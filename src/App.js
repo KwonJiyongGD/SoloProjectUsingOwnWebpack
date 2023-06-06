@@ -20,3 +20,12 @@ function App() {
 }
 
 export default App;
+
+//removed from json script:
+
+// "start": "webpack-dev-server --config webpack.config.js --open"
+
+/*  "start": "NODE_ENV=production node server/server.js",
+    "build": "webpack",
+    "dev": "NODE_ENV=development nodemon server/server.js & NODE_ENV=development webpack serve",
+ */

@@ -1,6 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Navbar = () => {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const fetchNavbarData = async () => {
+      try {
+        const response = await fetch('/contact');
+        const data = await response.json();
+        setMessage(data.message);
+      } catch (error) {
+        console.error('Error fetching navbar data:', error);
+      }
+    };
+
+    fetchNavbarData();
+  }, []);
+
   return (
     <nav className="navbar">
       <ul className="navbar-nav">
@@ -30,6 +46,7 @@ const Navbar = () => {
           </a>
         </li>
       </ul>
+      {message && <p>{message}</p>}
     </nav>
   );
 };
