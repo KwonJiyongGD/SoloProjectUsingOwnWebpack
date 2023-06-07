@@ -1,16 +1,18 @@
 const express = require('express');
 const app = express();
+const PORT = process.env.PORT || 5002;
+const cors = require('cors');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-app.get('/contact', (req, res) => {
-  // Handle the GET request for the /api/navbar route
-  // Add your desired functionality here
+app.use(cors());
+app.use(express.json());
 
-  // For example, you can send a response back to the client
-  res.json({ message: 'Navbar route accessed successfully' });
-});
+mongoose
+  .connect('mongodb://localhost:27017') //from Atlas
+  .then(() => console.log('Connected to MongoDB :D'))
+  .catch((err) => console.log(err));
 
-const port = 5000; // Choose a port number (e.g., 5000)
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });

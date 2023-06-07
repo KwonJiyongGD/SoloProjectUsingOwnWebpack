@@ -30,7 +30,7 @@ const profileSlice = createSlice({
       },
       {
         id: 4,
-        name: 'Lili',
+        name: 'LM',
         age: 26,
         gender: 'Female',
         info: '비가오는 날엔... 난 항상 널 그리워 해',
