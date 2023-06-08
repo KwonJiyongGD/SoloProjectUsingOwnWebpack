@@ -22,7 +22,9 @@ module.exports.saveProfile = async (req, res) => {
     });
 
     const savedProfile = await profile.save();
-    res.send(savedProfile);
+
+    // Send the saved profile back to the frontend
+    res.json(savedProfile);
   } catch (error) {
     console.log(error);
     res.status(500).send('Error saving profile');
