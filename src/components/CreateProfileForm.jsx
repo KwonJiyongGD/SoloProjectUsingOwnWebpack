@@ -69,39 +69,35 @@ const CreateProfileForm = () => {
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          required
         />
         <input
           type="number"
           placeholder="Age"
           value={age}
           onChange={(e) => setAge(e.target.value)}
-          required
         />
         <input
           type="text"
           placeholder="Gender"
           value={gender}
           onChange={(e) => setGender(e.target.value)}
-          required
         />
         <textarea
           placeholder="Info"
           value={info}
           onChange={(e) => setInfo(e.target.value)}
-          required
         ></textarea>
-        <button type="submit">Create</button>
+        <button type="submit">Save Profile</button>
       </form>
-
-      <div className="profiles">
-        <h2>Profiles</h2>
+      <h2>Profiles</h2>
+      <div className="profiles-container">
         {profiles.map((profile) => (
-          <div key={profile.id}>
+          <div key={profile._id} className="profile-card">
             <h3>{profile.name}</h3>
             <p>Age: {profile.age}</p>
             <p>Gender: {profile.gender}</p>
             <p>Info: {profile.info}</p>
+            <img className="profile-image" src={profile.imageUrl} alt="Dog" />
           </div>
         ))}
       </div>

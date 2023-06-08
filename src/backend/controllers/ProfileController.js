@@ -14,11 +14,17 @@ module.exports.saveProfile = async (req, res) => {
   try {
     const { name, age, gender, info } = req.body;
 
+    // Fetch a random dog image
+    const response = await fetch('https://dog.ceo/api/breeds/image/random');
+    const data = await response.json();
+    const imageUrl = data.message;
+
     const profile = new ProfileModel({
       name,
       age,
       gender,
       info,
+      imageUrl,
     });
 
     const savedProfile = await profile.save();

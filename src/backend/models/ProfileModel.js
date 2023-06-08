@@ -17,6 +17,10 @@ const profileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  imageUrl: {
+    type: String,
+    required: false,
+  },
 });
 
 module.exports = mongoose.model('Profile', profileSchema);
