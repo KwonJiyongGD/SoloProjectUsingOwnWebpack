@@ -49,7 +49,9 @@ const CreateProfileForm = () => {
         setAge('');
         setGender('');
         setInfo('');
-        console.log('Profile saved successfully!');
+        console.log(
+          'Profile saved successfully! 대박아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ'
+        );
         fetchProfiles(); // Fetch updated profiles after saving
       } else {
         // Error saving data
@@ -62,7 +64,8 @@ const CreateProfileForm = () => {
 
   return (
     <div className="create-profile-form">
-      <h2>Create Profile</h2>
+      <h2>WHAT DOGGO ARE YOU TODAY?</h2>
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -89,7 +92,6 @@ const CreateProfileForm = () => {
         ></textarea>
         <button type="submit">Save Profile</button>
       </form>
-      <h2>Profiles</h2>
       <div className="profiles-container">
         {profiles.map((profile) => (
           <div key={profile._id} className="profile-card">
