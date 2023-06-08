@@ -1,30 +1,54 @@
 const ProfileModel = require('../models/ProfileModel');
 
 module.exports.getProfile = async (req, res) => {
-  const contact = await ProfileModel.find();
-  res.send(contact);
+  try {
+    const profiles = await ProfileModel.find();
+    res.send(profiles);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error retrieving profiles');
+  }
 };
 
 module.exports.saveProfile = async (req, res) => {
-  const { name } = req.body;
+  try {
+    const { name, age, gender, info } = req.body;
 
-  ProfileModel.create({ name }).then((data) => {
-    console.log('Added Contact Info Successfully');
-    console.log(data);
-    res.send(data);
-  });
+    const profile = new ProfileModel({
+      name,
+      age,
+      gender,
+      info,
+    });
+
+    const savedProfile = await profile.save();
+    res.send(savedProfile);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error saving profile');
+  }
 };
 
 module.exports.updateProfile = async (req, res) => {
-  const { _id, name } = req.body;
-  ProfileModel.findByIdAndUpdate(_id, { name })
-    .then(() => res.send('Updated the Data in DB'))
-    .catch((err) => console.log(err));
+  try {
+    const { _id, name, age, gender, info } = req.body;
+
+    await ProfileModel.findByIdAndUpdate(_id, { name, age, gender, info });
+    res.send('Updated the Data in DB');
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error updating profile');
+  }
 };
 
 module.exports.deleteProfile = async (req, res) => {
-  const { _id } = req.body;
-  ProfileModel.findByIdAndDelete(_id)
-    .then(() => res.send('Deleted Profile from DB'))
-    .catch((err) => console.log(err));
+  try {
+    const { _id } = req.body;
+
+    await ProfileModel.findByIdAndDelete(_id);
+    res.send('Deleted Profile from DB');
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error deleting profile');
+  }
 };

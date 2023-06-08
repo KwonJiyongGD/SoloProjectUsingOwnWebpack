@@ -4,17 +4,20 @@ const PORT = process.env.PORT || 5002;
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
-const routes = require('./routes/profileRoute');
-// import
+const profileRouter = require('./routes/profileRoute');
+
 app.use(express.json());
 app.use(cors());
 
 mongoose
-  .connect(process.env.MONGODB_URL) //from Atlas
+  .connect('mongodb+srv://kwon:lol@cluster0.hwdqma8.mongodb.net/', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log('Connected to MongoDB :D'))
   .catch((err) => console.log(err));
 
-app.use(routes);
+app.use('/profiles', profileRouter);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

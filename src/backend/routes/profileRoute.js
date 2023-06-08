@@ -1,4 +1,5 @@
-const { Router } = require('express');
+const express = require('express');
+const router = express.Router();
 const {
   getProfile,
   saveProfile,
@@ -6,11 +7,9 @@ const {
   deleteProfile,
 } = require('../controllers/ProfileController');
 
-const router = Router();
-
 router.get('/', getProfile);
-router.post('/saveProfile', saveProfile);
-router.post('/updateProfile', updateProfile);
-router.post('/deleteProfile', deleteProfile);
+router.post('/', saveProfile);
+router.put('/', updateProfile);
+router.delete('/:', deleteProfile);
 
 module.exports = router;

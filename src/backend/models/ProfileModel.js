@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const contactSchema = new mongoose.Schema({
+const profileSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -10,7 +10,7 @@ const contactSchema = new mongoose.Schema({
     required: true,
   },
   gender: {
-    type: Number,
+    type: String,
     required: true,
   },
   info: {
