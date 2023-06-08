@@ -1,9 +1,10 @@
 const Profile = require('../models/ProfileModel');
 // const fetch = require('node-fetch');
+const axios = require('axios');
 
 const ProfileController = {
   getProfile(req, res, next) {
-    const { name } = req.body;
+    const { name } = req.params;
 
     Profile.findOne({ name: name })
       .then((selected) => {
@@ -61,14 +62,42 @@ const ProfileController = {
       });
   },
 
+  // async saveProfile(req, res) {
+  //   try {
+  //     const { name, age, gender, info } = req.body;
+
+  //     // Fetch a random dog image
+  //     const response = await fetch('https://dog.ceo/api/breeds/image/random');
+  //     const data = await response.json();
+  //     const imageUrl = data.message;
+
+  //     const profile = new Profile({
+  //       name,
+  //       age,
+  //       gender,
+  //       info,
+  //       imageUrl,
+  //     });
+
+  //     const savedProfile = await profile.save();
+
+  //     // Send the saved profile back to the frontend
+  //     res.json(savedProfile);
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).send('Error saving profile');
+  //   }
+  // },
+
   async saveProfile(req, res) {
     try {
       const { name, age, gender, info } = req.body;
 
       // Fetch a random dog image
-      const response = await fetch('https://dog.ceo/api/breeds/image/random');
-      const data = await response.json();
-      const imageUrl = data.message;
+      const response = await axios.get(
+        'https://dog.ceo/api/breeds/image/random'
+      );
+      const imageUrl = response.data.message;
 
       const profile = new Profile({
         name,
@@ -80,8 +109,17 @@ const ProfileController = {
 
       const savedProfile = await profile.save();
 
-      // Send the saved profile back to the frontend
-      res.json(savedProfile);
+      // Extract the necessary data for the frontend
+      const profileData = {
+        name: savedProfile.name,
+        age: savedProfile.age,
+        gender: savedProfile.gender,
+        info: savedProfile.info,
+        imageUrl: savedProfile.imageUrl,
+      };
+
+      // Send the extracted profile data back to the frontend
+      res.json(profileData);
     } catch (error) {
       console.log(error);
       res.status(500).send('Error saving profile');

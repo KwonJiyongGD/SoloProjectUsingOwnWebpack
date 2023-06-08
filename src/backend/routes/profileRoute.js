@@ -6,10 +6,12 @@ const {
   updateProfile,
   deleteProfile,
 } = require('../controllers/ProfileController');
+const ProfileController = require('../controllers/ProfileController');
+const Profile = require('../models/ProfileModel');
 
 router.get('/', getProfile);
 router.post('/', saveProfile);
-router.put('/', updateProfile);
+router.put('/', updateProfile, ProfileController.updateProfile);
 router.delete('/', deleteProfile);
 
 module.exports = router;
