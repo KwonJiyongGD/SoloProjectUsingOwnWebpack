@@ -37,61 +37,23 @@ module.exports.saveProfile = async (req, res) => {
   }
 };
 
-// module.exports.updateProfile = async (req, res) => {
-//   try {
-//     const { _id, name, age, gender, info } = req.body;
-
-//     await ProfileModel.findByIdAndUpdate(_id, { name, age, gender, info });
-//     res.send('Updated the Data in DB');
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send('Error updating profile');
-//   }
-// };
-
 module.exports.updateProfile = async (req, res) => {
   try {
     const { _id, name, age, gender, info } = req.body;
 
-    const updatedProfile = await ProfileModel.findByIdAndUpdate(
-      _id,
-      { name, age, gender, info },
-      { new: true } // Return the updated profile
-    );
-
-    if (!updatedProfile) {
-      return res.status(404).send('Profile not found');
-    }
-
-    res.json(updatedProfile);
+    await ProfileModel.findByIdAndUpdate(_id, { name, age, gender, info });
+    res.send('Updated the Data in DB');
   } catch (error) {
     console.log(error);
     res.status(500).send('Error updating profile');
   }
 };
 
-// module.exports.deleteProfile = async (req, res) => {
-//   try {
-//     const { _id } = req.body;
-
-//     await ProfileModel.findByIdAndDelete(_id);
-//     res.send('Deleted Profile from DB');
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send('Error deleting profile');
-//   }
-// };
-
 module.exports.deleteProfile = async (req, res) => {
   try {
     const { _id } = req.body;
 
-    const deletedProfile = await ProfileModel.findByIdAndDelete(_id);
-
-    if (!deletedProfile) {
-      return res.status(404).send('Profile not found');
-    }
-
+    await ProfileModel.findByIdAndDelete(_id);
     res.send('Deleted Profile from DB');
   } catch (error) {
     console.log(error);
