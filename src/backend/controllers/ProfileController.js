@@ -32,13 +32,20 @@ const ProfileController = {
     const { age } = req.body;
 
     Profile.findOneAndUpdate({ name: name }, { age }, { new: true })
-      .then((selectedProfile) => {
-        res.locals.selectedProfile = selectedProfile;
+      .then((selected) => {
+        if (!selected) {
+          return next({
+            log: 'Error in finding profile to update',
+            status: 404,
+            message: 'Profile not found',
+          });
+        }
+        res.locals.selected = selected;
         return next();
       })
       .catch((err) => {
         return next({
-          log: 'Error updating profile :(',
+          log: 'Error updating profile',
           status: 400,
           message: 'Error in updating profile',
         });

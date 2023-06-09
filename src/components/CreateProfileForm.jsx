@@ -64,7 +64,7 @@ const CreateProfileForm = () => {
 
   return (
     <div className="create-profile-form">
-      <h2>WHAT DOGGO ARE YOU TODAY?</h2>
+      <h2>WHAT DOGGO PICTURE ARE YOU TODAY?</h2>
 
       <form onSubmit={handleSubmit}>
         <input

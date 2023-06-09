@@ -12,10 +12,11 @@ function App() {
     <div className="app">
       <h1>Michael/Kwon's CRUD(dy) App</h1>
       <Navbar />
+      <CreateProfileForm />
+
       <ProfileContainer />
       {console.log(fetchRandomImage())}
       {/* <PictureShower /> */}
-      <CreateProfileForm />
     </div>
   );
 }
