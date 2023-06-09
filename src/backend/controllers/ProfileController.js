@@ -52,13 +52,41 @@ const ProfileController = {
       });
   },
 
-  deleteProfile(req, res, next) {
-    const { name } = req.body;
+  // deleteProfile(req, res, next) {
+  //   const { name } = req.params;
 
-    Profile.findOneAndDelete({ name: name }, { age }, { new: true })
-      .then((selectedProfile) => {
-        res.locals.selectedProfile = selectedProfile;
-        return next();
+  //   Profile.findOneAndDelete({ name: name })
+  //     .then((deletedProfile) => {
+  //       console.log('DELETED THE PROFILE YAYYYYYY');
+  //       res.locals.deletedProfile = deletedProfile;
+  //       return next();
+  //     })
+  //     .catch((err) => {
+  //       return next({
+  //         log: 'Error in deleting profile :(',
+  //         status: 400,
+  //         message: 'Error in deleting profile',
+  //       });
+  //     });
+  // },
+
+  deleteProfile(req, res, next) {
+    const { name } = req.params;
+
+    Profile.findOneAndDelete({ name: name })
+      .then((deletedProfile) => {
+        if (!deletedProfile) {
+          return next({
+            log: 'Error in deleting profile :(',
+            status: 400,
+            message: 'Error in deleting profile',
+          });
+        }
+        res.locals.deletedProfile = deletedProfile;
+        console.log(`Deleted profile: ${deletedProfile.name}`);
+        return res.status(200).json({
+          message: `Profile ${deletedProfile.name} deleted successfully YAYYYYYYYYYYYYYYYYYY`,
+        });
       })
       .catch((err) => {
         return next({
@@ -68,33 +96,6 @@ const ProfileController = {
         });
       });
   },
-
-  // async saveProfile(req, res) {
-  //   try {
-  //     const { name, age, gender, info } = req.body;
-
-  //     // Fetch a random dog image
-  //     const response = await fetch('https://dog.ceo/api/breeds/image/random');
-  //     const data = await response.json();
-  //     const imageUrl = data.message;
-
-  //     const profile = new Profile({
-  //       name,
-  //       age,
-  //       gender,
-  //       info,
-  //       imageUrl,
-  //     });
-
-  //     const savedProfile = await profile.save();
-
-  //     // Send the saved profile back to the frontend
-  //     res.json(savedProfile);
-  //   } catch (error) {
-  //     console.log(error);
-  //     res.status(500).send('Error saving profile');
-  //   }
-  // },
 
   async saveProfile(req, res) {
     try {

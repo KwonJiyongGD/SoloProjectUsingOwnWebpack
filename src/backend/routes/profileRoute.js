@@ -18,6 +18,6 @@ router.put('/:name', updateProfile, (req, res) => {
   return res.status(200).json(res.locals.selected);
 });
 
-router.delete('/', deleteProfile);
+router.delete('/:name', deleteProfile);
 
 module.exports = router;
