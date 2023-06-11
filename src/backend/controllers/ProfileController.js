@@ -85,7 +85,7 @@ const ProfileController = {
         res.locals.deletedProfile = deletedProfile;
         console.log(`Deleted profile: ${deletedProfile.name}`);
         return res.status(200).json({
-          message: `Profile ${deletedProfile.name} deleted successfully YAYYYYYYYYYYYYYYYYYY`,
+          message: `Profile ${deletedProfile.name} deleted. ALLL MY ROUTES WORK YAYYYY THANK YOU EDDY FOR THE CLUTCH LAST MINUTE GUIDANCE`,
         });
       })
       .catch((err) => {
